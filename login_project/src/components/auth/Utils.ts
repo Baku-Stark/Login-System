@@ -2,9 +2,11 @@ import { Api } from "../services/API_Auth/API"
 import { IUser } from "./type_auth"
 
 export async function LoginRequest(email: string, password: string){
+    // console.log(`${email} - ${password}`)
     try{
         const request = await Api.post('login', {email, password})
-
+        // console.log(`TOKEN: ${request.data.token}`)
+        
         return request.data
     }
     catch (error){

@@ -3,7 +3,7 @@ import axios from 'axios'
 import { getUserLocalStorage } from '../../auth/Utils'
 
 export const Api = axios.create({
-    baseURL: "API LINK"
+    baseURL: "https://reqres.in/api"
 })
 
 Api.interceptors.request.use(

@@ -16,12 +16,12 @@ export function Register(){
         setAccount({...account, [e.target.name]: e.target.value})
     }
 
-    function submitRegister(e:any){
+    async function submitRegister(e:any){
         e.preventDefault()
         if(account?.password == account?.con_password){
-            console.log(account)
-            auth.Authenticate(account?.user as string, account?.password as string)
             e.target.reset()
+
+            await auth.Register(account as ObjectConstructor)
             navigate('/sign_in/')
         }
 
@@ -38,6 +38,7 @@ export function Register(){
                         required
                         type="text"
                         name="user"
+                        maxLength={45}
                         placeholder="Type your username"
                         onChange={handleChange}
                     />

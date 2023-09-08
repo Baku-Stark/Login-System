@@ -1,11 +1,13 @@
 import { useState } from "react"
+import { Link, useNavigate } from "react-router-dom"
+
 import { IUser } from "./type_auth"
+import { useAuth } from "../context/useAuth"
 
 import styles from '../../assets/CSS/auth.module.css'
-import { useAuth } from "../context/useAuth"
-import { Link } from "react-router-dom"
 
 export function Login(){
+    const navigate = useNavigate()
     const auth = useAuth()
 
     const [account, setAccount] = useState<IUser | null>()
@@ -14,12 +16,13 @@ export function Login(){
         setAccount({...account, [e.target.name]: e.target.value})
     }
 
-    function submitLogin(e:any){
+    async function submitLogin(e:any){
+        // console.log(account)
         e.preventDefault()
-        console.log(account)
-        auth.Authenticate(account?.user as string, account?.password as string)
         e.target.reset()
-        // navigate('/sign_in/')
+        
+        await auth.Authenticate(account?.email as string, account?.password as string)
+        navigate('/sign_in/')
     }
 
     return(
@@ -29,8 +32,8 @@ export function Login(){
                     <input
                         required
                         type="text"
-                        name="user"
-                        placeholder="Type your username"
+                        name="email"
+                        placeholder="Type your username ou email"
                         onChange={handleChange}
                     />
                 </div>
