@@ -14,6 +14,17 @@ export async function LoginRequest(email: string, password: string){
     }
 }
 
+export async function RegisterRequest(){
+    try{
+        const request = await Api.post('register', {})
+
+        return request.data
+    }
+    catch(error){
+        return null
+    }
+}
+
 export function getUserLocalStorage(){
     const json = localStorage.getItem('u')
     if(!json){
