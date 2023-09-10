@@ -22,37 +22,39 @@ export function Login(){
         e.target.reset()
         
         await auth.Authenticate(account?.email as string, account?.password as string)
-        navigate('/sign_in/')
+        navigate('/')
     }
 
     return(
-        <div>
-            <form method="POST" onSubmit={submitLogin}>
-                <div className={styles.divider_form}>
-                    <input
-                        required
-                        type="text"
-                        name="email"
-                        placeholder="Type your username ou email"
-                        onChange={handleChange}
-                    />
-                </div>
-                <div className={styles.divider_form}>
-                    <input
-                        required
-                        type="password"
-                        name="password"
-                        placeholder="Type your password"
-                        onChange={handleChange}
-                    />
-                </div>
-                <div className={styles.divider_link_form}>
-                    <Link to={"/sign_up/"}>Create a account</Link>
-                </div>
-                <div className={styles.divider_form}>
-                    <input type="submit" value="Entrar" />
-                </div>
-            </form>
+        <div className={styles.section}>
+            <div className={styles.container_auth}>
+                <form method="POST" onSubmit={submitLogin}>
+                    <div className={styles.divider_form}>
+                        <input
+                            required
+                            type="text"
+                            name="email"
+                            placeholder="Type your username ou email"
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className={styles.divider_form}>
+                        <input
+                            required
+                            type="password"
+                            name="password"
+                            placeholder="Type your password"
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className={styles.divider_link_form}>
+                        <Link to={"/sign_up/"}>Create a account</Link>
+                    </div>
+                    <div className={styles.divider_form}>
+                        <input type="submit" value="Entrar" />
+                    </div>
+                </form>
+            </div>
         </div>
     )
 }

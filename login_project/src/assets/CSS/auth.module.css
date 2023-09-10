@@ -1,3 +1,24 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.section{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #111;
+}
+
+.section .container_auth{
+    padding: 20px;
+    background-color: #191919;
+}
+
 form{
     display: flex;
     flex-direction: column;
@@ -5,4 +26,48 @@ form{
 
 form .divider_form, form .divider_link_form{
     margin-bottom: 2vh;
+    display: flex;
+    justify-content: center;
+}
+
+form .divider_link_form a{
+    text-decoration: none;
+    color: #008b8b;
+}
+
+form .divider_link_form:hover{
+    text-decoration: underline;
+    color: #004b4b;
+}
+
+.divider_form input[type="text"],
+.divider_form input[type="password"],
+.divider_form input[type="email"],
+.divider_form input[type="submit"]{
+    padding: 5px 10px;
+}
+
+.divider_form input[type="submit"]{
+    font-weight: bold;
+    color: #f0f8ff;
+    background-color: #111;
+}
+
+.divider_form input[type="submit"]:hover{
+    background-color: #252525;
+}
+
+.divider_form input[type="text"],
+.divider_form input[type="password"],
+.divider_form input[type="email"]{
+    border: none;
+    font-size: 0.8em;
+    color: #f0f8ff;
+    background-color: #111;
+}
+
+.divider_form input[type="text"]:focus,
+.divider_form input[type="password"]:focus,
+.divider_form input[type="email"]:focus{
+    outline: none;
 }

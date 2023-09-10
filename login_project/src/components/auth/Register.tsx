@@ -31,52 +31,54 @@ export function Register(){
     }
 
     return(
-        <div>
-            <form method="POST" onSubmit={submitRegister}>
-                <div className={styles.divider_form}>
-                    <input
-                        required
-                        type="text"
-                        name="user"
-                        maxLength={45}
-                        placeholder="Type your username"
-                        onChange={handleChange}
-                    />
-                </div>
-                <div className={styles.divider_form}>
-                    <input
-                        required
-                        type="email"
-                        name="email"
-                        placeholder="Type your email address"
-                        onChange={handleChange}
-                    />
-                </div>
-                <div className={styles.divider_form}>
-                    <input
-                        required
-                        type="password"
-                        name="password"
-                        placeholder="Type your password"
-                        onChange={handleChange}
-                    />
-                </div>
-                <div className={styles.divider_form}>
-                    <input
-                        required
-                        type="password"
-                        name="con_password"
-                        placeholder="Confirm your password"
-                        onChange={handleChange}
-                    />
-                </div>
-                <div className={styles.divider_link_form}>
-                    <Link to={"/sign_in/"}>Enter in your account</Link>
-                </div>
-                <div className={styles.divider_form}>
-                    <input type="submit" value="Entrar" />
-                </div>
-            </form>
+        <div className={styles.section}>
+            <div className={styles.container_auth}>
+                <form method="POST" onSubmit={submitRegister}>
+                    <div className={styles.divider_form}>
+                        <input
+                            required
+                            type="text"
+                            name="user"
+                            maxLength={45}
+                            placeholder="Type your username"
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className={styles.divider_form}>
+                        <input
+                            required
+                            type="email"
+                            name="email"
+                            placeholder="Type your email address"
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className={styles.divider_form}>
+                        <input
+                            required
+                            type="password"
+                            name="password"
+                            placeholder="Type your password"
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className={styles.divider_form}>
+                        <input
+                            required
+                            type="password"
+                            name="con_password"
+                            placeholder="Confirm your password"
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className={styles.divider_link_form}>
+                        <Link to={"/sign_in/"}>Log in to your account</Link>
+                    </div>
+                    <div className={styles.divider_form}>
+                        <input type="submit" value="Registrar" />
+                    </div>
+                </form>
+            </div>
         </div>
     )
 }
