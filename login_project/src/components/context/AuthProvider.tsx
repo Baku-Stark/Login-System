@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { AuthContext } from './AuthContext';
 import { IAuthProvider, IUser } from '../auth/type_auth';
-import { LoginRequest, getUserLocalStorage, setUserLocalStorage } from '../auth/Utils';
+import { LoginRequest, RegisterRequest, getUserLocalStorage, setUserLocalStorage } from '../auth/Utils';
 
 export function AuthProvider({
     children
@@ -11,11 +11,12 @@ export function AuthProvider({
     const navigate = useNavigate()
     const [user, setUser] = useState<IUser | null>()
 
-    async function Register(
-        account: ObjectConstructor
-    ){
+    async function Register(formData: FormData){
         // main function's auth REGISTER system
-        console.log(account)
+
+        const response = await RegisterRequest(formData)
+        console.log("Response")
+        console.log(response)
     }
 
     async function Authenticate(

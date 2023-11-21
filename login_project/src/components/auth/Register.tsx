@@ -10,18 +10,33 @@ export function Register(){
     const auth = useAuth()
     const navigate = useNavigate()
 
+    const [file, setFile] = useState('')
     const [account, setAccount] = useState<IUser | null>()
 
+
+    function handleChangeImage(e:any){
+        setFile(e.target.files[0])
+    }
+
     function handleChange(e:any){
+        //console.log(e.target.files)
         setAccount({...account, [e.target.name]: e.target.value})
     }
 
     async function submitRegister(e:any){
         e.preventDefault()
+
         if(account?.password == account?.con_password){
             e.target.reset()
 
-            await auth.Register(account as ObjectConstructor)
+            const formData = new FormData()
+
+            formData.append('user', account?.user)
+            formData.append('email', account?.email)
+            formData.append('password', account?.password)
+            formData.append('file', file)
+
+            await auth.Register(formData)
             navigate('/sign_in/')
         }
 
@@ -71,11 +86,19 @@ export function Register(){
                             onChange={handleChange}
                         />
                     </div>
+                    <div className={styles.divider_form}>
+                        <input
+                            type="file"
+                            name="file"
+                            placeholder="Send a picture"
+                            onChange={handleChangeImage}
+                        />
+                    </div>
                     <div className={styles.divider_link_form}>
                         <Link to={"/sign_in/"}>Log in to your account</Link>
                     </div>
                     <div className={styles.divider_form}>
-                        <input type="submit" value="Registrar" />
+                        <input type="submit" value="Sign Up" />
                     </div>
                 </form>
             </div>

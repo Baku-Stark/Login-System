@@ -4,7 +4,7 @@ import { IUser } from "./type_auth"
 export async function LoginRequest(email: string, password: string){
     // console.log(`${email} - ${password}`)
     try{
-        const request = await Api.post('login', {email, password})
+        const request = await Api.post('sign_in', {email, password})
         // console.log(`TOKEN: ${request.data.token}`)
         
         return request.data
@@ -14,9 +14,9 @@ export async function LoginRequest(email: string, password: string){
     }
 }
 
-export async function RegisterRequest(){
+export async function RegisterRequest(formData: FormData){
     try{
-        const request = await Api.post('register', {})
+        const request = await Api.post('sign_up', formData)
 
         return request.data
     }
