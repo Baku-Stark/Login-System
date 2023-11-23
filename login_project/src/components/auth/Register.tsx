@@ -31,9 +31,9 @@ export function Register(){
 
             const formData = new FormData()
 
-            formData.append('user', account?.user)
-            formData.append('email', account?.email)
-            formData.append('password', account?.password)
+            formData.append('user', account?.user as string)
+            formData.append('email', account?.email as string)
+            formData.append('password', account?.password as string)
             formData.append('file', file)
 
             await auth.Register(formData)
