@@ -13,10 +13,16 @@ export function AuthProvider({
 
     async function Register(formData: FormData){
         // main function's auth REGISTER system
-
-        const response = await RegisterRequest(formData)
-        console.log("Response")
-        console.log(response)
+        try {
+            const response = await RegisterRequest(formData)
+            console.log(`%c SYSTEM %c ${response.data} `, 
+                'background: #C4473A; color: #f0eff5; font-weight: bold;',
+                'background: #f0f8ff; color: #111111; font-weight: bold;'
+            );
+            
+        } catch (error) {
+            console.error(error)
+        }
     }
 
     async function Authenticate(
