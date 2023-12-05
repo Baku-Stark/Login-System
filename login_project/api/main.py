@@ -1,6 +1,8 @@
 import os
 import uuid
-import json
+#import json
+
+import SERVICES
 
 try:
     import uvicorn
@@ -33,19 +35,36 @@ async def RegisterRequest(
     email: str = Form(...),
     password: str = Form(...),
     file: UploadFile = File(...)
-):
-    file.filename = f"{user}_{uuid.uuid4()}.jpg"
-    content = await file.read()
+) -> str:
+    """
+        CREATE A NEW USER.
+        =====
+    """
+    account = {"user": user, "email": email, "password": password}
+
+    # --- insert new user in database
+    service_user = SERVICES.SERVICE_USER()
+    # --- insert new user in database
 
     # --- save file
+    file.filename = f"{user}_{uuid.uuid4()}.jpg"
+    content = await file.read()
     if not os.path.isdir(f"api/IMAGES/{user}"):
         os.mkdir(f"api/IMAGES/{user}")
     
     save_file = open(f"api/IMAGES/{user}/{file.filename}", 'wb')
     save_file.write(content)
     save_file.close()
+    # --- save file
 
-    return {'response': "NEW USER CREATED"}
+    return  service_user.request_new_user(account)
+
+@app.post("/sign_in", status_code=status.HTTP_202_ACCEPTED, tags=['Root'])
+async def LoginRequest(
+    email: str = Form(...),
+    password: str = Form(...),
+) -> str:
+    return "user_token"
 
 if __name__ == '__main__':
     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
