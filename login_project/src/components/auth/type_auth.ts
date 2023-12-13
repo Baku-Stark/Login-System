@@ -4,12 +4,13 @@ export interface IUser{
     password?: string
     con_password?: string
     token?: string
-    file?: string
 }
 
 export interface IContext extends IUser{
     Authenticate: (email: string, password: string) => Promise<void>
+    Login : (formData: FormData) => Promise<void>
     Register: (formData: FormData) => Promise<void>
+    UserGet : (token: string) => Promise<void>
     Logout: () => void
 }
 
