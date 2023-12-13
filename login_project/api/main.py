@@ -52,11 +52,9 @@ async def RegisterRequest(
     account['icon_profile'] = str(file.filename)
 
     service_user = SERVICES.SERVICE_USER()
-    service_user.request_new_user(account)
-    request = service_user.request_new_user(account)
     # print(service_user.request_new_user(account)['response'])
     
-    if request['response']:
+    if len(file.filename) > 0:
         # --- save file
         content = await file.read()
         

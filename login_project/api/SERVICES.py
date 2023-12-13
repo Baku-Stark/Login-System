@@ -35,13 +35,17 @@ class SERVICE_USER:
         """
             REGEX (Useremail)
         """
+        # print(f"email: {email}")
 
-        p = re.compile(r'([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(.[A-Z|a-z]{2,})+')
-        corrs = p.findall(email)
+        # p = re.compile(r'([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(.[A-Z|a-z]{2,})+')
+        # corrs = p.finditer(email)
+        # print(f"email(REGEX): {corrs}")
 
-        print(f"email: {email}")
-        print(f"email(REGEX): {corrs[0]}")
-        return True if corrs[0] == email else False
+        req = re.match(r'([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(.[A-Z|a-z]{2,})+', email)
+
+        print(req)
+
+        return True if req else False
     
     def verify_user_regex(self, user: str) -> bool:
         """
