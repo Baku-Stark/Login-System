@@ -78,12 +78,20 @@ async def LoginRequest(
     print(f'{email} - {password}')
     return {"token": "user_token", "email": email}
 
-@app.post("auth_user", status_code=status.HTTP_202_ACCEPTED, tags=['Root'])
+@app.post("/auth_user", status_code=status.HTTP_202_ACCEPTED, tags=['Root'])
 async def UserRequest(
     token: str = Form(...)
 ):
-    print(token)
-    return {"user": "username", "email": "user_email"}
+    # print(token)
+    service_user = SERVICES.SERVICE_USER()
+
+    return {"data": service_user.GET_A_USER(token)}
+
+@app.delete("/delete_user/{id_user}", status_code=status.HTTP_200_OK, tags=['Root'])
+async def UserDelete(id_user: int):
+    service_user = SERVICES.SERVICE_USER()
+
+    return {"data": service_user.DELETE(id_user)}
 
 if __name__ == '__main__':
     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)

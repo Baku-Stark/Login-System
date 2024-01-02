@@ -92,3 +92,9 @@ class SERVICE_USER:
 
     def request_new_user(self, account: dict):
         return self.CREATE_NEW_USER(account)
+
+    def GET_A_USER(self, token: str):
+        return self.db_server.READ_A_USER(token)
+
+    def DELETE(self, id_user: int):
+        return self.db_server.DELETE_USER(id_user)
