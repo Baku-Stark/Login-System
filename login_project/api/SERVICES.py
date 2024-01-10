@@ -1,5 +1,4 @@
-import re
-import base64
+import re, os, shutil, base64
 
 from random import randint
 from SERVER import DataBase_Server
@@ -9,6 +8,14 @@ class SERVICE_USER:
         Api Service
     """
     db_server = DataBase_Server()
+
+    def create_user_folder(self, user: str):
+        os.mkdir(f"api/IMAGES/{user}")
+        os.mkdir(f"api/IMAGES/{user}/profile")
+
+    def delete_user_folder(self, user: str):
+        if os.path.isdir(f"api/IMAGES/{user}"):
+            shutil.rmtree(f"api/IMAGES/{user}")
 
     def generate_token_body(self) -> str:
         """
@@ -94,7 +101,7 @@ class SERVICE_USER:
         return self.CREATE_NEW_USER(account)
 
     def GET_A_USER(self, token: str):
-        return self.db_server.READ_A_USER(token)
+        return self.db_server.READ_A_DATA_wToken(token)
 
     def DELETE(self, id_user: int):
         return self.db_server.DELETE_USER(id_user)

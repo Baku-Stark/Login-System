@@ -59,8 +59,7 @@ async def RegisterRequest(
         content = await file.read()
         
         if not os.path.isdir(f"api/IMAGES/{user}"):
-            os.mkdir(f"api/IMAGES/{user}")
-            os.mkdir(f"api/IMAGES/{user}/profile")
+            service_user.create_user_folder(user)
         
         IMAGE_DIR = f"api/IMAGES/{user}/profile/{file.filename}"
         save_file = open(IMAGE_DIR, 'wb')
