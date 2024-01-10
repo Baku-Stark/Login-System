@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 import { useState } from "react"
 import { IUser } from "./type_auth"
@@ -8,7 +8,6 @@ import styles from '../../assets/CSS/auth.module.css'
 
 export function Register(){
     const auth = useAuth()
-    const navigate = useNavigate()
 
     const [file, setFile] = useState('')
     const [account, setAccount] = useState<IUser | null>()
@@ -27,8 +26,6 @@ export function Register(){
         e.preventDefault()
 
         if(account?.password == account?.con_password){
-            e.target.reset()
-
             const formData = new FormData()
 
             formData.append('user', account?.user as string)
@@ -37,7 +34,6 @@ export function Register(){
             formData.append('file', file)
 
             await auth.Register(formData)
-            navigate('/sign_in/')
         }
 
         else{
@@ -88,6 +84,7 @@ export function Register(){
                     </div>
                     <div className={styles.divider_form}>
                         <input
+                            required
                             type="file"
                             name="file"
                             placeholder="Send a picture"

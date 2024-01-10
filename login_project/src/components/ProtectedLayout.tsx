@@ -5,6 +5,7 @@ export function ProtectedLayout({
     children
 }: {children: JSX.Element}){
     const user = useAuth()
+    //console.log(`Protected Layout: ${user.email}`)
 
     if(!user.email){
         return (
@@ -14,5 +15,5 @@ export function ProtectedLayout({
             </>
         )
     }
-    return children
+    return children // pages/Home.tsx
 }

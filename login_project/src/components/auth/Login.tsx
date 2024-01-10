@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 import { IUser } from "./type_auth"
 import { useAuth } from "../context/useAuth"
@@ -7,7 +7,6 @@ import { useAuth } from "../context/useAuth"
 import styles from '../../assets/CSS/auth.module.css'
 
 export function Login(){
-    const navigate = useNavigate()
     const auth = useAuth()
 
     const [account, setAccount] = useState<IUser | null>()
@@ -17,12 +16,17 @@ export function Login(){
     }
 
     async function submitLogin(e:any){
-        // console.log(account)
         e.preventDefault()
+
+        const formData = new FormData()
+        formData.append('email', account?.email as string)
+        formData.append('password', account?.password as string)
+
+        await auth.Login(formData)
+
+        //await auth.Authenticate(account?.email as string, account?.password as string)
+
         e.target.reset()
-        
-        await auth.Authenticate(account?.email as string, account?.password as string)
-        navigate('/')
     }
 
     return(
