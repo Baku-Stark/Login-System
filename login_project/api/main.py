@@ -6,14 +6,20 @@ import SERVICES
 
 try:
     import uvicorn
+    from fastapi.responses import HTMLResponse
+    from fastapi.staticfiles import StaticFiles
+    from fastapi.templating import Jinja2Templates
     from fastapi.middleware.cors import CORSMiddleware
-    from fastapi import FastAPI, File, UploadFile, Form, status
+    from fastapi import FastAPI, File, UploadFile, Form, status, Request
 
 except ModuleNotFoundError:
     os.system('pip install -r requirements.txt')
 
 os.system('cls')
 app = FastAPI()
+app.mount("/static", StaticFiles(directory="api/PAGE/static", html=True), name="static")
+
+templates = Jinja2Templates(directory="api/PAGE")
 
 origins = ["*"]
 
@@ -25,9 +31,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/users", status_code=status.HTTP_200_OK, tags=['Root'])
-async def home():
-    return "Hello World!"
+@app.get("/", status_code=status.HTTP_200_OK, response_class=HTMLResponse, tags=['Root'])
+async def home(request: Request):
+    return templates.TemplateResponse(name="index.html", context={"request": request})
 
 @app.post("/sign_up", status_code=status.HTTP_201_CREATED, tags=['Root'])
 async def RegisterRequest(
