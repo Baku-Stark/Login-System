@@ -6,39 +6,46 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
           
+    <!-- <link href="{{ url_for('static', path='/css/backup.css') }}" rel="stylesheet"> -->
     <link href="{{ url_for('static', path='/css/style.css') }}" rel="stylesheet">
+    
     <title>LOGIN SYSTEM - HTML RESPONSE</title>
 </head>
-<body>
+<body style="background-image: url({{ url_for('static', path='/img/black_hole.gif') }})">
     <div class="container">
         <header class="container_header">
             <h1>Login Sytem - AUTH (API)</h1>
         </header>
-        <section>
+        <section class="container_body">
             <article class="image">
-                <img src="{{ url_for('static', path='/img/Baku_Icon.jpg') }}" alt="Baku-Stark icon">
+                <figure>
+                    <img src="{{ url_for('static', path='/img/Baku_Icon.jpg') }}" alt="Baku-Stark icon">
+                    <figcaption>
+                        <p>Author: <span>Baku-Stark</span></p>
+                    </figcaption>
+                </figure>
             </article>
-            <article class="blocks">
-                <div>
-                    <a href="" target="_blank" class="link">
+            <article class="blocks_social_media">
+                <a href="https://twitter.com/Walleemc2" target="_blank" class="link">
+                    <div>
                         <i class="bi bi-twitter-x"></i>
-                    </a>
-                </div>
-                <div>
-                    <a href="" target="_blank" class="link">
+                    </div>
+                </a>
+                <a href="https://instagram.com/wallace_emc2" target="_blank" class="link">
+                    <div>
                         <i class="bi bi-instagram"></i>
-                    </a>
-                </div>
-                <div>
-                    <a href="" target="_blank" class="link">
+                    </div>
+                </a>
+                <a href="https://www.linkedin.com/in/wallace-freitas-92a2061b6/" target="_blank" class="link">
+                    <div>
                         <i class="bi bi-linkedin"></i>
-                    </a>
-                </div>
-                <div>
-                    <a href="" target="_blank" class="link">
+                    </div>
+                </a>
+                <a href="https://github.com/Baku-Stark" target="_blank" class="link">
+                    <div>
                         <i class="bi bi-github"></i>
-                    </a>
-                </div>
+                    </div>
+                </a>
             </article>
         </section>
     </div>

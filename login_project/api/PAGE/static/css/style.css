@@ -1,3 +1,4 @@
+/* HTMLRESPONSE - PYTHON (FAST API) */
 *{
     margin: 0;
     padding: 0;
@@ -5,7 +6,11 @@
 }
 
 body{
+    height: 100vh;
     padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: #111111;
 }
 
@@ -14,13 +19,106 @@ body, div.container{
 }
 
 div.container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
     background-color: #202020;
 }
 
-h1{
-    color: #f0f8ff;
+.container_header,
+.container_body,
+article.image,
+article.blocks_social_media{
+    width: 100%;
+    padding: 20px;
 }
 
-.link i{
+.container_header{
+    text-align: center;
+}
+
+.container_header h1{
+    color: #f0f8ff;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+article.image{
+    text-align: center;
+}
+
+article.image figure img{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+
+article.image figure p span{
+    font-weight: bold;
+    animation: rowColors 15s infinite ease-in-out;
+}
+
+@keyframes rowColors{
+    100%, 0%{
+        color: rgb(255,0,0);
+    }
+    8%{
+        color: rgb(255,127,0);
+    }
+    16%{
+        color: rgb(255,255,0);
+    }
+    25%{
+        color: rgb(127,255,0);
+    }
+    33%{
+        color: rgb(0,255,0);
+    }
+    41%{
+        color: rgb(0,255,127);
+    }
+    50%{
+        color: rgb(0,255,255);
+    }
+    58%{
+        color: rgb(0,127,255);
+    }
+    66%{
+        color: rgb(0,0,255);
+    }
+    75%{
+        color: rgb(127,0,255);
+    }
+    83%{
+        color: rgb(255,0,255);
+    }
+    91%{
+        color: rgb(255,0,127);
+    }
+}
+
+article.blocks_social_media{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+article.blocks_social_media a.link{
+    padding: 20px;
+    border-radius: 20px;
+    background-color: #000000;
+}
+
+article.blocks_social_media a.link:hover{
+    transition: 0.3s;
+    background-color: #111111;
+}
+
+i{
+    font-size: 2vw;
+}
+
+p, p i, .link i{
     color: #f0f8ff;
 }
