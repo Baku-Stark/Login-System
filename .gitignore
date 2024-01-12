@@ -132,3 +132,4 @@ dist
 .pnp.*
 login_project/api/SERVER/__pycache__/__init__.cpython-311.pyc
 login_project/api/SERVER/__pycache__/__init__.cpython-311.pyc
+login_project.zip
