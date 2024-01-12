@@ -1,3 +1,5 @@
+login_project.zip
+
 # Logs
 logs
 *.log
@@ -128,3 +130,6 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+login_project/api/SERVER/__pycache__/__init__.cpython-311.pyc
+login_project/api/SERVER/__pycache__/__init__.cpython-311.pyc
+login_project.zip

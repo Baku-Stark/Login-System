@@ -80,8 +80,9 @@ async def LoginRequest(
     email: str = Form(...),
     password: str = Form(...),
 ):
-    print(f'{email} - {password}')
-    return {"token": "user_token", "email": email}
+    # print(f'{email} - {password}')
+    service_user = SERVICES.SERVICE_USER()
+    return {"token": service_user.request_login_user(email, password)}
 
 @app.post("/auth_user", status_code=status.HTTP_202_ACCEPTED, tags=['Root'])
 async def UserRequest(
