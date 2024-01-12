@@ -39,6 +39,19 @@ class DataBase_Server():
                 print(Colors.BACK_RED + " ERROR " + Colors.END, end="")
                 print(Colors.RED + f" {error} " + Colors.END)
 
+    def READ_ALL_DATA(self):
+        """            
+            return:
+                `-> data : tuple (id ...)
+        """
+        with con:
+            cur = con.cursor()
+            query = "SELECT * FROM users"
+            cur.execute(query)
+            data = cur.fetchall()
+            
+            return data
+
     def READ_A_DATA_wToken(self, token: str):
         """
             args:

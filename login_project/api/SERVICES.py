@@ -17,6 +17,14 @@ class SERVICE_USER:
         if os.path.isdir(f"api/IMAGES/{user}"):
             shutil.rmtree(f"api/IMAGES/{user}")
 
+    def encode_password(self, password: str) -> str:
+        # --- ENCODE [PASSWORD]
+        encode_password = base64.b64encode(password.encode("ascii"))
+        password_encode = str(encode_password)[2:-1]
+        # --- ENCODE [PASSWORD]
+
+        return password_encode
+
     def generate_token_body(self) -> str:
         """
             return:
@@ -50,7 +58,7 @@ class SERVICE_USER:
 
         req = re.match(r'([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(.[A-Z|a-z]{2,})+', email)
 
-        print(req)
+        # print(req)
 
         return True if req else False
     
@@ -89,7 +97,7 @@ class SERVICE_USER:
             account['token'] = token
             # --- ENCODE [TOKEN]
             
-            print(account)
+            # print(account)
             self.db_server.INSERT_NEW_USER(account)
 
             return {"response": True, "token": token}
@@ -99,6 +107,19 @@ class SERVICE_USER:
 
     def request_new_user(self, account: dict):
         return self.CREATE_NEW_USER(account)
+
+    def request_login_user(self, email: str, password: str):
+        token = ""
+        for data in self.db_server.READ_ALL_DATA():
+            # print(data)
+
+            if email == data[3] and self.encode_password(password) == data[4]:
+                # print(f"CHECK (SERVICES.py): {data}")
+
+                token = data[1]
+                break
+        
+        return token
 
     def GET_A_USER(self, token: str):
         return self.db_server.READ_A_DATA_wToken(token)
