@@ -5,9 +5,9 @@ export function ProtectedLayout({
     children
 }: {children: JSX.Element}){
     const user = useAuth()
-    //console.log(`Protected Layout: ${user.email}`)
+    //console.log(`Protected Layout: ${user.token}`)
 
-    if(!user.email){
+    if(!user.token){
         return (
             <>
                 <h1>You don't have access!</h1>
