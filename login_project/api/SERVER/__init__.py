@@ -67,14 +67,18 @@ class DataBase_Server():
             cur.execute(query)
             info = cur.fetchall()
 
-            data = ()
+            data = []
 
             for item in info:
                 # print(item)
 
                 if item[1] == token:
                     # print(item)
-                    data = item
+                    data.append(item[0])
+                    data.append(item[1])
+                    data.append(item[2])
+                    data.append(item[3])
+                    data.append(item[5])
                     break
             
             return data
@@ -94,14 +98,18 @@ class DataBase_Server():
             cur.execute(query)
             info = cur.fetchall()
 
-            data = ()
+            data = []
 
             for item in info:
                 # print(item)
 
                 if item[0] == id_user:
                     # print(item)
-                    data = item[2]
+                    data.append(item[0])
+                    data.append(item[1])
+                    data.append(item[2])
+                    data.append(item[3])
+                    data.append(item[5])
                     break
             
             return data

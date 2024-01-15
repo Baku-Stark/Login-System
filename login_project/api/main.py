@@ -6,7 +6,9 @@ import SERVICES
 
 try:
     import uvicorn
+    from pathlib import Path
     from fastapi.responses import HTMLResponse
+    from fastapi.responses import FileResponse
     from fastapi.staticfiles import StaticFiles
     from fastapi.templating import Jinja2Templates
     from fastapi.middleware.cors import CORSMiddleware
@@ -34,6 +36,18 @@ app.add_middleware(
 @app.get("/", status_code=status.HTTP_200_OK, response_class=HTMLResponse, tags=['Root'])
 async def home(request: Request):
     return templates.TemplateResponse(name="index.html", context={"request": request})
+
+@app.get("/vector_image/get_image/{user}/{icon_profile}")
+def image_endpoint(
+    user: str,
+    icon_profile: str,
+):
+    print(user)
+    print(icon_profile)
+
+    IMAGE_DIR = f"api/IMAGES/{user}/profile/{icon_profile}"
+    image_path = Path(IMAGE_DIR)
+    return FileResponse(image_path)
 
 @app.post("/sign_up", status_code=status.HTTP_201_CREATED, tags=['Root'])
 async def RegisterRequest(
